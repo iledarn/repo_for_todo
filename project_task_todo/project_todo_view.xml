@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_task_form2" model="ir.ui.view">
+      <field name="name">project.task.form</field>
+      <field name="model">project.task</field>
+      <field name="inherit_id" ref="project.view_task_form2"/>
+      <field name="arch" type="xml">
+        <xpath expr = "//page[last()]" position = "after">
+          <page string = "ToDos">
+            <field name="todo_ids">
+              <tree string="Task Work" editable="top">
+                <field name="name"/>
+                <field name="reviewer_id"/>
+                <field name="user_id"/>
+                <field name="done"/>
+              </tree>
+            </field>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="mt_todo_done" model="mail.message.subtype">
+      <field name="name">Todo done</field>
+      <field name="res_model">project.task.todo</field>
+      <field name="default" eval="True"/>
+      <field name="description">Todo done</field>
+    </record>
+
+    <record id="mt_task_todo_done" model="mail.message.subtype">
+      <field name="name">Task Todo done</field>
+      <field name="res_model">project.task</field>
+      <field name="parent_id" eval="ref('mt_todo_done')"/>
+      <field name="relation_field">task_id</field>
+    </record>
+    
+    <record id="action_view_todo" model="ir.actions.act_window">
+      <field name="name">To Do</field>
+      <field name="res_model">project.task.todo</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p>
+          To do
+        </p>
+      </field>
+    </record> 
+
+      <menuitem name="To Do"
+                parent="project.menu_project_management"
+                id="menu_action_view_todo"
+                action="action_view_todo"/>
+      
+  </data>
+</openerp>
