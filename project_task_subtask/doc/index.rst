@@ -9,9 +9,9 @@ Usage
 * when new subtask is created\changed message is sent to user that assigned to this subtask
 * delete subtask can only user who create it
 * Each subtask has button to swith state:
-** DONE
-** TODO
-** CANCELED
+  * DONE
+  * TODO
+  * CANCELED
 
 * new menu "Subtasks"
 ** default filter: "My", "TODO"
